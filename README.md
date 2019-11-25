@@ -1,1 +1,1 @@
-Usage Demonstration of SparkML Lib -- Jen Tek LLC.
+Usage Demonstration of pyspark.ml and pyspark.mllib, by George Jen, Jen Tek LLC.
