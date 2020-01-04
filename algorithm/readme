@@ -1,1 +1,58 @@
+George Jen,  Jen Tek LLC
+
+binary search algorithm, with iteration without recursion:
+binary_search.py
+
+binary search algorithm, with recursion:
+binary_search_with_recursion.py
+
+binary search algorithm, without recursion, but using stack:
+binary_search_with_stack.py
+
+linear search:
+linear_search.py
+
+quick sort:
+quick_sort.py
+
+insersion sort:
+insersion_sort.py
+
+tree operations:
+tree.py
+
+1. Create a binary tree buildBinTree(arr) and add array element to the tree nodes.
+if parent node is at index i in the array, 
+    then 
+        left child of that node is at index (2*i + 1) in the array 
+        right child is at index (2*i + 2) in the array.
+
+2. Tree Depth First Traversals:
+
+In Order left to right-->leftRootRight(node)
+In Order right to left-->rightRootLeft(node)
+Pre Order left to right-->rootLeftRight(node)
+Pre Order right to left-->def rootRightLeft(node)
+Post Order left to right-->leftRightRoot(node)
+Post Order right to left-->rightLeftRoot(node)
+
+3. Tree Breadth first traversal:
+Breadth first traversal from left to right--> breadthFirstTraversalLeftRight(node)
+Breadth first traversal from right to left--> breadthFirstTraversalRightLeft(node)
+
+4  Discover tree depth --> getBinTreeDepth(node,depth=[0])
+It will fill in the depth value in one element depth array
+
+5. Binary tree search
+
+Binary tree search, traverse the tree branch return original index of arr if found, -1 if not found
+return_index is an array that that one element.  It is default to [-1], once found, it will be set to [matched node.index]
+
+binTreeSearch(node,element,return_index)
+
+6. Plotting the tree-->plotTree(node)
+It will basically perform breadth first traversal and print each node along the way
+
+
+
 
