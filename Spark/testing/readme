@@ -1,5 +1,5 @@
-To test Spark streaming application, especially socket streaming, it is helpful to have a in house streaming generator, that 
-can be customized to generate needed streaming data for funtionality testing.
+To test Spark streaming application, especially socket streaming, it is helpful to have an in house automatic streaming generator, that 
+can be customized to generate needed streaming data for funtionality testing using Spark streaming or any streaming.
 
 George Jen, Jen Tek LLC
 
