@@ -3,6 +3,7 @@ can be customized to generate needed streaming data for funtionality testing usi
 
 George Jen, Jen Tek LLC
 
+1. Server:
 
 sock_server.py
 
@@ -14,10 +15,13 @@ python3 sock_server.py <port number>
 
 No need to specify hostname or IP address, sock_server.py will listen to the port on all interfaces
 
+2. Client (to make sure server is sending out streaming data before connecting your Spark streaming apps to the server)
+
 socket_client.cpp
 socket_client_util.c
 
-Client test program in cpp and c, used to test sock_server.py if it is modified.
+Client test program is written in c++ and c, used to sanity test sock_server.py if it is modified.  It will just print whatever 
+socket server sends out
 
 Following is how to build:
 gcc -fPIC -c socket_client_util.c socket_client_util.o
