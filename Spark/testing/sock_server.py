@@ -22,7 +22,8 @@ def get_message():
     datetimestamp=datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     value=random.randint(1,10000000)
     string="".join(sorted([chr(i) for i in range(ord('a'),ord('a')+26)],key=lambda x: random.randint(1,1000)))
-    return str(datetimestamp)+","+string+","+str(value)
+    return str(datetimestamp)+","+string+","+str(value)+"\n"
+#Very important, string sent over socket must end with "\n" to be picked by Spark streaming, it took me hours to figure this out
 
 
 if __name__=="__main__":
