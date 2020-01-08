@@ -1,1 +1,67 @@
+To test Spark streaming application, especially socket streaming, it is helpful to have a in house streaming generator, that 
+can be customized to generate needed streaming data for funtionality testing.
+
+George Jen, Jen Tek LLC
+
+
+sock_server.py
+
+Socket server in Python, that generates endless random CSV lines in the format   datetime, random text string, random integer
+
+Syntax:
+
+python3 sock_server.py <port number>
+
+No need to specify hostname or IP address, sock_server.py will listen to the port on all interfaces
+
+socket_client.cpp
+socket_client_util.c
+
+Client test program in cpp and c, used to test sock_server.py if it is modified.
+
+Following is how to build:
+gcc -fPIC -c socket_client_util.c socket_client_util.o
+g++ -D HAVE_LONG_INT_64  socket_client.cpp socket_client_util.o -o sock_client
+
+Syntax:
+./sock_client <host name or IP address> <port>
+
+Example:
+
+Starting sock_server.py
+
+python sock_server.py 29999
+29999
+Socket created
+Socket bind complete
+Listening on 29999
+Connected with 10.0.0.46:48838
+Client disconnect
+
+
+Starting sock_client
+
+./sock_client 10.0.0.46 29999
+ipaddress 10.0.0.46
+port 29999
+2020-01-07 23:04:46,lstekcwjmdzxgobhrynaiuvpfq,1837830
+2020-01-07 23:04:47,pbtuzndrajkogfilcvxsqhyemw,7925402
+2020-01-07 23:04:48,szfndpbtmqjacyvwuioegkxhlr,8991915
+2020-01-07 23:04:49,ovxclswfjhutgqiznbekrmyadp,8926804
+2020-01-07 23:04:50,nsqkmogurbwfjaeyhvpcxtdlzi,3957364
+2020-01-07 23:04:51,qrfgiclyhdbxepkuwztojnvmsa,6416511
+control-C
+
+
+
+
+
+
+
+
+
+
+
+
+
 
