@@ -24,7 +24,7 @@ Client test program is written in c++ and c, used to sanity test sock_server.py 
 socket server sends out
 
 Following is how to build:
-gcc -fPIC -c socket_client_util.c socket_client_util.o
+gcc -fPIC -c socket_client_util.c -o socket_client_util.o
 g++ -D HAVE_LONG_INT_64  socket_client.cpp socket_client_util.o -o sock_client
 
 Syntax:
