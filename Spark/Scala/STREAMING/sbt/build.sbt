@@ -1,4 +1,4 @@
-// this file was written for spark 2.0.0 and scala 2.12.10
+// this file was written for spark 3.0.0-preview and scala 2.12.10
 // George Jen
 // Jen Tek LLC
 
