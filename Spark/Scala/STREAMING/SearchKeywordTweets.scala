@@ -37,11 +37,12 @@ val tweets = TwitterUtils.createStream(ssc, None)
 val tweets_collection = tweets.map(each_tweet => each_tweet.getText())
     
 //Set your search criteria to only retain these meet your search condition
-val focus_tweets_collection=tweets_collection.filter(text=>text.toLowerCase.contains("new york") | text.toLowerCase.contains("san francisco"))
+val focus_tweets_collection=tweets_collection.filter(text=>text.toLowerCase.contains("happy") | text.toLowerCase.contains("money"))
 
 //Display your result
 focus_tweets_collection.print()
-    
+
+//If you intent to run on Non windows machine, use proper path instead of windows drive letter!
 ssc.checkpoint("d:/checkpoint/")
 ssc.start()
 ssc.awaitTermination()
