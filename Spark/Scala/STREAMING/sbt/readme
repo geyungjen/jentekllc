@@ -1,0 +1,7 @@
+Included are working build.sbt, assembly.sbt, build.properties
+
+run 
+
+sbt assembly
+
+to build the jar file,.
