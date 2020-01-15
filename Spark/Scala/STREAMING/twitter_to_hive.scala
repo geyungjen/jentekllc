@@ -66,6 +66,7 @@ They are downloadable online, you need to search and download
      val ssc = new StreamingContext(sc, Seconds(1))
     
  // specify twitter consumerKey, consumerSecret, accessToken, accessTokenSecret   
+ // These keys below are NOT valid, only for demo purpose.  Do not waste time to run with these keys
     System.setProperty("twitter4j.oauth.consumerKey","dgHDhsGEpNAY5tTTe2Oi0Aw1V")
     System.setProperty("twitter4j.oauth.consumerSecret", "tx4G4iFZ2z8nLgiOMwqT6K9PTkE75qI0da6SGeF5o5TAJ2VuAU")
     System.setProperty("twitter4j.oauth.accessToken", "3129381637-I59MeAXCj7iHfaOb7AnHAwh5s9B5YNfj2S0pYFb")
