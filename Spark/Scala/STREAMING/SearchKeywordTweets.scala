@@ -8,7 +8,7 @@ import org.apache.spark.streaming.StreamingContext._
 
 import org.apache.log4j.{Level, Logger}
 
-/** Listens to a stream of Tweets only contains "new york" or "san francisco" case insensitive
+/** Listens to a stream of Tweets only contains "happy" or "money" case insensitive
 you can change it to whatever keyword you want to limit to
  */
 object SearchKeywordTweets {
