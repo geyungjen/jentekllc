@@ -22,16 +22,9 @@ Jen Tek LLC
  */
 object SearchKeywordTweets {
   
-  /** 
-You will need to include external jar files for you to be able to import org.apache.spark.streaming.twitter._
-they are:
-
-dstream-twitter_<your version of Scala>-SNAPSHOT.jar
-twitter4j-core-4.0.4.jar
-twitter4j-stream-4.0.4.jar
-
-They are downloadable online, you need to search and download
-
+ /** 
+I have included working build.sbt for you to run 
+sbt assembly to create jar file, check sbt sub folder for the build.sbt
 */
   def run_insert(line: String): Unit=
   {
