@@ -26,12 +26,6 @@ object SearchKeywordTweets {
 I have included working build.sbt for you to run 
 sbt assembly to create jar file, check sbt sub folder for the build.sbt
 */
-  def run_insert(line: String): Unit=
-  {
-    println(line)
-//    var datetimestamp:String=sdf.format(Calendar.getInstance().getTime())
-  }
-  
  
   def main(args: Array[String]) {
     
