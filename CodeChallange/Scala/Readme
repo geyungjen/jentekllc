@@ -1,1 +1,11 @@
+Note:
 
+This practice is aiming to beat human being based code challange in Scala, such as in person or via virtual whiteboard such as coderpad. To beat such code challange, priority is on functionality, meanings working 100% or most of scenario.
+
+This practice is not aiming at non human being, automatic coding challange
+
+If you need to do automatic coding challange, while your priority still is functionality, you should be using efficient algorithm to make the code as fast as possible to increase performance score.
+
+I wrote the code in Python (3), then refactor into Scala (2.12)
+
+Maximum sum subarray of size K
