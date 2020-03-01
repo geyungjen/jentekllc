@@ -1,7 +1,8 @@
-Content Provided by Jen Tek LLC.
- 
-These are some of the codes in the Spark teaching courses developped, provided and offered by Jen Tek LLC.  The hands on and details are illustrated by course handouts spearately.
+# Data Science with Apache Spark
 
-For questions, please contact George Jen at Jen Tek LLC at:
+Python and Scala Application Development with Apache Spark
 
-george.jen@erpcomputing.com 
+Dr. George Jen
+
+Jen Tek LLC
+
