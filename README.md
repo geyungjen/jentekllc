@@ -1,8 +1,4 @@
-# Data Science with Apache Spark
+# geyungjen/erpcomputing
 
-Python and Scala Application Development with Apache Spark
-
-Dr. George Jen
-
-Jen Tek LLC
+Page is too long and couldn't be imported.
 
