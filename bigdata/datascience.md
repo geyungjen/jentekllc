@@ -1,12 +1,14 @@
 # Data Science with Apache Spark
 
-## Development workstation setup
+George Jen, Jen Tek LLC
 
-### Computer environment needed for this class:
+*Draft, work in progress*
 
-[Setup Elipcse Scala IDE](https://app.gitbook.com/@george-jen/s/spark/~/drafts/-M18d7sI3yKXVibSPQQh/setup/untitled#setup-elipcse-scala-ide)
+#### Computer environment needed for this class.
 
-If you do not have 2nd computer for Linux machine, there is Ubuntu 16.04 Virtual box image available for you to download.
+You need 2 computers. One for development and one for production.
+
+If you do not have 2nd computer for Linux machine, there is Ubuntu 16.04 Virtual box image available for you to download, if there are plenty of CPU cores and memory capacity in your computer.
 
 For my environment, there are 32GB RAM on my windows 10 laptop as a development Apache Spark workstation, and the Linux computer has Intel 8700 6 cores/12 thread CPU and 64GB RAM to run Apache Hadoop, Hive and Spark cluster that has 1 master and worker nodes running with docker, sufficient to simulate production Spark cluster environment whether on premise or in the cloud.
 
@@ -16,15 +18,15 @@ The codes that I developed for this class are in my github site and you will be 
 
 [https://github.com/geyungjen/jentekllc/tree/master/Spark](https://github.com/geyungjen/jentekllc/tree/master/Spark)
 
-## Spark Environment Setup
+#### Spark Environment Setup
 
-#### Development environment:
+Working Environment to be built:
 
-The dev environment we develop Spark applications in Python \(PySpark\) and Scala
+Dev environment we develop Spark applications in Python \(PySpark\) and Scala
 
 Production environment: the Spark cluster environment that we will submit Spark jobs to be run with
 
-The Dev environment setup,  tasks:
+#### Dev environment setup,  task list:
 
 Install Java devilment toolkit 1.8 \(required, higher version Java may not work properly with Spark, we found out jdk1.8.0\_191 works best, therefore, recommend jdk1.8.0\_191. \(Do NOT install JDK 9 or above, Spark is not currently compatible with JDK 9 or above.\)
 
@@ -36,17 +38,17 @@ Download and install Scala \(optional, as Spark has scala\)
 
 Setup Spylon-kernel on jupyter-notebook, we will be using jupyter-notebook for both Python and Scala
 
-### Setup Elipcse Scala IDE
+Setup Elipcse Scala IDE
 
-The Dev environment setup,  tasks:
+#### JDK setup
 
 Install Java devilment toolkit 1.8 \(required, higher version Java may not work properly with Spark, we found out jdk1.8.0\_191 works well, therefore, recommend jdk1.8.0\_191. \(Do NOT install JDK 9 or above, Spark is not currently compatible with JDK 9 or above.\)
 
 [https://www.oracle.com/technetwork/java/javase/downloads/java-archive-javase8-2177648.html](https://www.oracle.com/technetwork/java/javase/downloads/java-archive-javase8-2177648.html)
 
-#### JDK Windows \(10\) installation.
+JDK Windows \(10\) installation.
 
-#### No space allowed in JDK folder name
+<u>No space allowed in JDK folder name</u>
 
 Avoid install Java Development Kit into a folder which name contains space, such as c:\program files or c:\program files \(x86\).  Best should be no space in folder name.  If you installed JDK under c:\program files or c:\program files \(x86\),   you will need to later in your Scala code set environment variable JAVA\_HOME to
 
@@ -58,9 +60,9 @@ C:\Progra~2\Java\jdk1.8.0\_191
 
 If JDK is in C:\Program Files \(X86\)
 
-Download and install Anaconda Python and create virtual environment with Python 3.6 \(work best with most of the deep learning libraries\)
+#### Download and install Anaconda Python and create virtual environment with Python 3.6 \(work best with most of the deep learning libraries\)
 
-#### Download and install Anaconda Python 3.x:
+Download and install Anaconda Python 3.x:
 
 [https://www.anaconda.com/distribution/](https://www.anaconda.com/distribution/)
 
@@ -124,9 +126,9 @@ Also point %TEMP% and %TMP% to c:\tmp
 
 Then you are done with Spark setup.
 
-Download Scala IDE, we will be using Eclipse with Scala plugging.
+#### Scala IDE
 
-Download Scala IDE and install your downloads:
+Download Scala IDE, we will be using Eclipse with Scala plugging, install your downloads:
 
 {% embed url="http://scala-ide.org/" %}
 
@@ -156,13 +158,13 @@ Open an Anaconda command prompt as administrator
 
 conda activate spark
 
-A
-
 pip install spylon-kernel
 
 Create a kernel spec for Jupyter notebook 
 
 python -m spylon\_kernel install --user
+
+#### Summary
 
 Once you have downloaded the software stated in prior slides:
 
@@ -176,11 +178,7 @@ Anaconda Python 3.7
 
 Scala IDE \(Eclipse with Scala plugin\)
 
-I will demonstrate the setup of the Apache Spark complete development environment with Python and Scala live in the class or on the videos.
-
-From this point forward, you shall have a working Apache Spark, complete with Python and Scala development IDE
-
-Jupyter notebook with Python 3 and Scala kernel, and Standalone Eclipse Scala IDE
+I will demonstrate the setup of the Apache Spark complete development environment with Python and Scala live in the class or on the videos.  From this point forward, you shall have a working Apache Spark, complete with Python and Scala development IDE, Jupyter notebook with Python 3 and Scala kernel, and Standalone Eclipse Scala IDE
 
 You are now ready for software application development with Python and Scala with Apache Spark
 
@@ -194,7 +192,9 @@ Docker deployment of Spark Cluster
 
 Physical deployment of Spark Cluster
 
-#### Create a special docker image from scratch
+
+
+#### Docker deployment of Spark Cluster
 
 Docker Install, for our purpose, we only need to install Docker Community Edition \(CE\)
 
@@ -246,7 +246,7 @@ Install docker-compose:
 
 {% embed url="https://docs.docker.com/compose/install/" %}
 
-#### Now create customized Apache Spark Docker container
+#### Create customized Apache Spark Docker container
 
 Create an empty directory, name does not matter, cd into that directory afterwards.
 
@@ -269,7 +269,7 @@ RUN wget http://apache.mirrors.lucidnetworks.net/spark/spark-3.0.0-preview/spark
 RUN tar -xzf spark-3.0.0-preview-bin-hadoop2.7.tgz && \
 
     mv spark-3.0.0-preview-bin-hadoop2.7 /spark && \
-
+    
     rm spark-3.0.0-preview-bin-hadoop2.7.tgz
 
 COPY start-master.sh /start-master.sh
@@ -285,9 +285,9 @@ vi start-master.sh, enter below, save and exit
 /spark/bin/spark-class org.apache.spark.deploy.master.Master \
 
     --ip $SPARK\_LOCAL\_IP \
-
+    
     --port $SPARK\_MASTER\_PORT \
-
+    
     --webui-port $SPARK\_MASTER\_WEBUI\_PORT
 
 chmod +x start-master.sh
@@ -299,7 +299,7 @@ vi start-worker.sh, enter below, save and exit
 /spark/bin/spark-class org.apache.spark.deploy.worker.Worker \
 
     --webui-port $SPARK\_WORKER\_WEBUI\_PORT \
-
+    
     $SPARK\_MASTER
 
 chmod +x start-worker.sh
@@ -312,7 +312,7 @@ Run be[Setup Elipcse Scala IDE](https://app.gitbook.com/@george-jen/s/spark/~/dr
 
  docker build -t spark\_lab/spark:latest
 
-#### docker-compose
+#### docker-compose and docker-compose.yml
 
 In the same docker\_dir directory, create docker-compose.yml
 
@@ -325,53 +325,53 @@ services:
   spark-master:
 
     image: spark\_lab/spark:latest
-
+    
     container\_name: spark-master
-
+    
     hostname: spark-master
-
+    
     ports:
-
+    
       - "8080:8080"
-
+    
       - "7077:7077"
-
+    
     networks:
-
+    
       - spark-network
-
+    
     environment:
-
+    
       - "SPARK\_LOCAL\_IP=spark-master"
-
+    
       - "SPARK\_MASTER\_PORT=7077"
-
+    
       - "SPARK\_MASTER\_WEBUI\_PORT=8080"
-
+    
     command: "/start-master.sh"  
 
 spark-worker:
 
     image: spark\_lab/spark:latest
-
+    
     depends\_on:
-
+    
       - spark-master
-
+    
     ports:
-
+    
       - 8080
-
+    
     networks:
-
+    
       - spark-network
-
+    
     environment:
-
+    
       - "SPARK\_MASTER=spark://spark-master:7077"
-
+    
       - "SPARK\_WORKER\_WEBUI\_PORT=8080"
-
+    
     command: "/start-worker.sh"
 
 networks:
@@ -379,9 +379,9 @@ networks:
   spark-network:
 
     driver: bridge
-
+    
     ipam:
-
+    
       driver: default
 
 #### Launch custom built Docker container with docker-compose
@@ -400,19 +400,17 @@ The IP address can be the localhost or the IP address of the server that runs th
 
 For all the docker containers used in the class, they are available for download
 
-#### Setup Hadoop, Hive and Spark on Linux
-
-#### Setup Hadoop
-
-You can also choose Linux non docker setup to setup Hadoop, Hive and Spark, read on:
+#### Setup Hadoop, Hive and Spark on Linux without docker
 
 #### Install JDK 
 
-Download JDK 8, for example, 
+Download JDK  8:
+
+https://www.oracle.com/java/technologies/javase/javase8-archive-downloads.html
 
 I downloaded: jdk-8u202-linux-x64.tar.gz
 
-Do below:
+Enter below:
 
 cd ~/
 
@@ -751,6 +749,8 @@ You can show the full list of hdfs command by
 
 hdfs dfs -help
 
+#### Connect to Hadoop web interface @port 50070
+
 When hadoop instance is running, you can connect to default port 50070 on the name node by \(in my host name\) to see information about the name node:
 
 ![](../.gitbook/assets/hadoop2.jpg)
@@ -917,9 +917,9 @@ Spark supports Scala, Python, Java and R.
 
 In our class, we will only focus on Scala and Python for all hands-on programming.
 
-## Python 3 Crash Course
+#### Python 3 Warm Up
 
-Python 3 crash courses \(We will spend time on Python crash course live in the class and video\):
+Python 3 Warm Up \(We will spend time on Python crash course live in the class and video\):
 
 Basics
 
@@ -933,7 +933,7 @@ Data Structures
 
 Input/Output
 
-### Basics
+#### Basics
 
 Numbers:
 
@@ -953,7 +953,7 @@ Numbers:
 
 1.6
 
-### Iterables/Collections
+#### Iterables/Collections
 
 String “hello” or ‘hello’
 
@@ -1220,13 +1220,13 @@ while True:
 \#    print\(a\)
 
     if len\(fib\)&gt;=10:
-
+    
         break
-
+    
     else:
-
+    
         fib.append\(a\)
-
+    
         a, b = b, a+b print\(fib\[-1\]\)
 
 #### Tuple:
@@ -1355,20 +1355,18 @@ To delete element ‘a’ from s:
 
 s.remove\(‘a’\)
 
-### Flow Control:
-
 #### Conditional statement
 
 if &lt;condition&gt;:
 
     \#True here
-
+    
     statements
 
 elif &lt;condition&gt;:
 
     \#True here
-
+    
     statements
 
 …
@@ -1376,7 +1374,7 @@ elif &lt;condition&gt;:
 else:
 
      \#Catch all other here
-
+    
      statements
 
 Example:
@@ -1433,20 +1431,20 @@ range\(-10, -100, -30\)
 
 ...       print\(i, a\[i\]\)
 
-### Functions and methods:
+#### Functions and methods
 
 Python functions or methods return or do not have to return values
 
 def fib\(n\):    \# write Fibonacci series up to n
 
     a, b = 0, 1
-
+    
     while a&lt;n:
-
+    
         print\(a, end=' '\)
-
+    
         a,b = b,a+b
-
+    
         print\(""\)
 
 fib\(10\)
@@ -1504,11 +1502,11 @@ For example
 class car\(object\):
 
     wheel\_number=4
-
+    
     seal\_row\_number=2
-
+    
     def \_\_init\_\_\(self,brand\):
-
+    
         self.brand=brand
 
 wheel\_number, seal\_row\_number are class attributes, class attributes can be of any data type, include
@@ -1564,17 +1562,17 @@ Please enter an integer: 42
 with open\('/tmp/test.txt','r'\) as fp:
 
     while True:
-
+    
         line=fp.readline\(\)
-
+    
         if line:
-
+    
             line=line.strip\('\n'\)
-
+    
             print\(line.split\(' '\)\)
-
+    
         else:
-
+    
             break
 
 It outputs below:
@@ -1590,7 +1588,7 @@ It outputs below:
 with open\('/tmp/test.out','w'\) as fp:
 
     for i in range\(5\):
-
+    
         fp.write\(str\(i\)\)
 
 It writes into file /tmp/test.out below:
@@ -1601,13 +1599,21 @@ It writes into file /tmp/test.out below:
 
 That is enough to start working application development with Spark with Python and will continue have on demand Python crash courses whenever needed during developing Spark application using PySpark
 
-## Scala Crash Courses
+#### Scala Warm Up
 
-#### Scala Crash Exercises:
+Mutable and immutable variable
 
-#### Type of Variable:
+methods
 
-#### Mutable and Immutable:
+class
+
+case class
+
+object
+
+trait
+
+#### Type of Variable:   Mutable or immutable
 
 Immutable Variable, contents can only be assigned initially, can not be modified
 
@@ -1730,7 +1736,7 @@ object IdFactory {
   def create\(\): Int = {
 
     counter += 1
-
+    
     counter
 
   }
@@ -1817,7 +1823,7 @@ println\(d.message\)  // I'm an instance of class B
 
 println\(d.loudMessage\)  // I'M AN INSTANCE OF CLASS B
 
-### Working with Apache Spark
+#### Working with Apache Spark
 
 That is enough to start working application development with Spark with Scala and will continue have on demand Scala crash courses whenever needed during developing Spark application using Scala
 
@@ -1841,7 +1847,7 @@ The above will turn off logging message from Spark unless  there is error.
 
 #### Run a program to estimate PI, which is 3.14592…
 
-#### First Scala code with Apache Spark using  Eclipse IDE
+First Scala code with Apache Spark using  Eclipse IDE
 
 Start Eclipse Scala Plug-ins, click New-&gt;Scala Project
 
@@ -1876,35 +1882,35 @@ import org.apache.spark.sql.SparkSession
 object pi {
 
     def main\(args: Array\[String\]\): Unit = {
-
+    
     Logger.getLogger\("org"\).setLevel\(Level.ERROR\)
-
+    
     val spark = SparkSession
-
+    
       .builder
-
+    
       .master\("local"\)
-
+    
       .appName\("Spark Pi"\)
-
+    
       .getOrCreate\(\)
-
+    
     val slices = if \(args.length &gt; 0\) args\(0\).toInt else 2
-
+    
     val n = math.min\(100000L \* slices, Int.MaxValue\).toInt // avoid overflow
-
+    
     val count = spark.sparkContext.parallelize\(1 until n, slices\).map { i =&gt;
-
+    
       val x = random \* 2 - 1
-
+    
       val y = random \* 2 - 1
-
+    
       if \(x\*x + y\*y &lt;= 1\) 1 else 0
-
+    
     }.reduce\(\_ + \_\)
-
+    
     println\(s"Pi is roughly ${4.0 \* count / \(n - 1\)}"\)
-
+    
     spark.stop\(\)
 
   } }
@@ -2020,9 +2026,9 @@ n = 100000 \* partitions
 def f\(\_\):
 
     x = random\(\) \* 2 - 1
-
+    
     y = random\(\) \* 2 - 1
-
+    
     return 1 if x \*\* 2 + y \*\* 2 &lt;= 1 else 0
 
 count = spark.sparkContext.parallelize\(range\(1, n + 1\), partitions\).map\(f\).reduce\(add\)
@@ -2031,7 +2037,7 @@ print\("Pi is roughly %f" % \(4.0 \* count / n\)\)
 
 spark.stop\(\)
 
-### SPARK SQL
+#### SPARK SQL
 
 Spark SQL is Apache Spark's module for working with structured data.
 
@@ -2080,13 +2086,13 @@ Logger.getLogger\("org"\).setLevel\(Level.ERROR\)
 val spark = SparkSession
 
     .builder
-
+    
     .appName\("csv2parquet"\)
-
+    
     .master\("local\[\*\]"\)
-
+    
     .config\("spark.sql.warehouse.dir", "file:///d:/tmp"\)
-
+    
     .getOrCreate\(\)
 
 val ds = spark.read.format\("csv"\).option\("header", "true"\).option\("quote", "\""\).load\("D:/teaching/scala/ticker\_symbol.csv"\)
@@ -2102,11 +2108,11 @@ df.show\(3, false\)
 val df\_with\_datatype=df.selectExpr\("Ticker",
 
                   "Name",
-
+    
                   "Exchange",
-
+    
                   "CategoryName",
-
+    
                   "cast\(CategoryNumber as int\) CategoryNumber"\)
 
 df\_with\_datatype.show\(3, false\)
@@ -2126,11 +2132,11 @@ read\_parquet\_df.show\(3, false\)
 import spark.implicits.\_
 
     val TickerSymbol = read\_parquet\_df.toDF\(\)
-
+    
     TickerSymbol.printSchema\(\)
-
+    
     TickerSymbol.createOrReplaceTempView\("TickerSymbol"\)
-
+    
     spark.sql\("SELECT \* from TickerSymbol where Ticker in \('IBM','MSFT','HPQ','GE'\)"\).show\(20,false\)
 
 }
@@ -2164,63 +2170,63 @@ case class Record\(key: Int, value: String\)
  def main\(args: Array\[String\]\): Unit = {
 
        Logger.getLogger\("org"\).setLevel\(Level.ERROR\)
-
+    
        val warehouseLocation = new File\("spark-warehouse"\).getAbsolutePath
-
+    
        val spark = SparkSession
-
+    
           .builder\(\)
-
+    
           .config\("spark.master", "local"\)
-
+    
           .appName\("interfacing spark sql to hive metastore with no configuration file"\)
-
+    
           .config\("hive.metastore.uris", "thrift://10.0.0.46:9083"\) // replace with your hivemetastore service's thrift url
-
+    
           .enableHiveSupport\(\) // to enable hive support
-
+    
           .getOrCreate\(\)
 
 import spark.implicits.\_
 
     import spark.sql
-
+    
     sql\("CREATE TABLE IF NOT EXISTS src \(key INT, value STRING\) USING hive"\)
-
+    
     sql\("LOAD DATA LOCAL INPATH 'D:/spark/examples/src/main/resources/kv1.txt' INTO TABLE src"\)
-
+    
     // Queries are expressed in HiveQL
-
+    
     sql\("SELECT \* FROM src"\).show\(\)
-
+    
     sql\("SELECT COUNT\(\*\) FROM src"\).show\(\)
-
+    
      val sqlDF = sql\("SELECT key, value FROM src WHERE key &lt; 10 ORDER BY key"\)
-
+    
     // The items in DataFrames are of type Row, which allows you to access each column by ordinal.
-
+    
     val stringsDS = sqlDF.map {
-
+    
       case Row\(key: Int, value: String\) =&gt; s"Key: $key, Value: $value"
-
+    
     }
-
+    
     stringsDS.show\(\)
 
 // You can also use DataFrames to create temporary views within a SparkSession.
 
     val recordsDF = spark.createDataFrame\(\(1 to 100\).map\(i =&gt; Record\(i, s"val\_$i"\)\)\)
-
+    
     recordsDF.createOrReplaceTempView\("records"\)
-
+    
     // Queries can then join DataFrame data with data stored in Hive.
-
+    
     sql\("SELECT \* FROM records r JOIN src s ON r.key = s.key"\).show\(\)
 
    // Create a Hive managed Parquet table, with HQL syntax instead of the Spark SQL native syntax
 
     // \`USING hive\`
-
+    
     sql\("CREATE TABLE IF NOT EXISTS hive\_records\(key int, value string\) STORED AS PARQUET"\)
 
    // Save DataFrame to the Hive managed table
@@ -2230,54 +2236,48 @@ import spark.implicits.\_
    df.write.mode\(SaveMode.Overwrite\).saveAsTable\("hive\_records"\)
 
     // After insertion, the Hive managed table has data now
-
+    
     sql\("SELECT \* FROM hive\_records"\).show\(\)
 
 // Prepare a Parquet data directory
 
     val dataDir = "/tmp/parquet\_data"
-
+    
     spark.range\(10\).write.parquet\(dataDir\)
-
+    
     // Create a Hive external Parquet table
-
+    
     sql\(s"CREATE EXTERNAL TABLE IF NOT EXISTS hive\_bigints\(id bigint\) STORED AS PARQUET LOCATION '$dataDir'"\)
-
+    
     // The Hive external table should already have data
-
+    
     sql\("SELECT \* FROM hive\_bigints"\).show\(\)
-
+    
     // Turn on flag for Hive Dynamic Partitioning
-
+    
     spark.sqlContext.setConf\("hive.exec.dynamic.partition", "true"\)
-
+    
     spark.sqlContext.setConf\("hive.exec.dynamic.partition.mode", "nonstrict"\)
-
+    
     // Create a Hive partitioned table using DataFrame API
-
+    
     df.write.partitionBy\("key"\).format\("hive"\).saveAsTable\("hive\_part\_tbl"\)
-
+    
     // Partitioned column \`key\` will be moved to the end of the schema.
-
+    
     sql\("SELECT \* FROM hive\_part\_tbl"\).show\(\)
-
+    
     spark.stop\(\)
 
 }
 
 }
 
-Scala code is available on my github site:
+Scala and python code is available on my github site:
 
 {% embed url="https://github.com/geyungjen/jentekllc/tree/master/Spark/Scala/SQL" %}
 
-
-
-Python code is available on:
-
-{% embed url="https://github.com/geyungjen/jentekllc/tree/master/Spark/Python/SQL" %}
-
-### SPARK Streaming
+#### SPARK Streaming
 
 Spark Streaming can read data from HDFS, Flume, Kafka, Twitter and ZeroMQ. You can also define your own custom data sources.
 
@@ -2602,7 +2602,7 @@ class wordCountClass extends Serializable {
 def flatMap\(lines: org.apache.spark.streaming.dstream.DStream\[String\]\): org.apache.spark.streaming.dstream.DStream\[String\] = {
 
     val results=lines.flatMap\(\_.split\(" "\)\)
-
+    
     results
 
 }
@@ -2610,7 +2610,7 @@ def flatMap\(lines: org.apache.spark.streaming.dstream.DStream\[String\]\): org.
 def map\(words: org.apache.spark.streaming.dstream.DStream\[String\]\): org.apache.spark.streaming.dstream.DStream\[\(String, Int\)\] = {
 
     val wordPair=words.map\(x=&gt;\(x,1\)\)
-
+    
     wordPair
 
 }
@@ -2618,7 +2618,7 @@ def map\(words: org.apache.spark.streaming.dstream.DStream\[String\]\): org.apac
 def reduceByKey\(wordPair: org.apache.spark.streaming.dstream.DStream\[\(String, Int\)\]\): org.apache.spark.streaming.dstream.DStream\[\(String, Int\)\]={
 
     val wordCounts=wordPair.reduceByKey\(\(a,b\)=&gt;\(a+b\)\)
-
+    
     wordCounts
 
 }
@@ -2630,11 +2630,11 @@ val wordCountObject = new wordCountClass\(\)
 val updateFunc = \(values: Seq\[Int\],state: Option\[Int\]\)=&gt;{
 
       val currentCount = values.foldLeft\(0\)\(\_ + \_\)
-
+    
       val previousCount = state.getOrElse\(0\)
-
+    
       Some\(currentCount + previousCount\)
-
+    
     }
 
 val sparkConf = new SparkConf\(\).setAppName\("HdfsWordCount"\)
@@ -2660,11 +2660,11 @@ val wordCountObject = new wordCountClass\(\)
 val updateFunc = \(values: Seq\[Int\],state: Option\[Int\]\)=&gt;{
 
       val currentCount = values.foldLeft\(0\)\(\_ + \_\)
-
+    
       val previousCount = state.getOrElse\(0\)
-
+    
       Some\(currentCount + previousCount\)
-
+    
     }
 
 val sparkConf = new SparkConf\(\).setAppName\("HdfsWordCount"\)
@@ -2728,11 +2728,11 @@ object WordCount {
 //    }
 
     //StreamingExamples.setStreamingLogLevels\(\)
-
+    
     val sparkConf = new SparkConf\(\).setMaster\("local\[2\]"\).setAppName\("HdfsWordCount"\)
-
+    
     // Create the context
-
+    
     val ssc = new StreamingContext\(sparkConf, Seconds\(2\)\)
 
 // Create the FileInputDStream on the directory and use the
@@ -2742,15 +2742,15 @@ object WordCount {
 //    val lines = ssc.textFileStream\(args\(0\)\)
 
     val lines = ssc.textFileStream\("hdfs://10.0.0.46:9000/tmp/spark/"\)
-
+    
     val words = lines.flatMap\(\_.split\(" "\)\)
-
+    
     val wordCounts = words.map\(x =&gt; \(x, 1\)\).reduceByKeyAndWindow\(\(a:Int,b:Int\) =&gt; \(a + b\), Seconds\(30\), Seconds\(10\)\)
-
+    
     wordCounts.print\(100\)
-
+    
     ssc.start\(\)
-
+    
     ssc.awaitTermination\(\)
 
   } }
@@ -2838,7 +2838,7 @@ val reduceFn: \(T, T\) =&gt; T = {
   case in @ \(\(k1, v1\), \(k2, v2\)\) =&gt;
 
     println\(s"&gt;&gt;&gt; input: $in"\)
-
+    
     \(k2, s"$v1 + $v2"\)
 
 }
@@ -3068,21 +3068,21 @@ System.setProperty\("twitter4j.oauth.consumerKey",“&lt;your Twitter consumer k
 val tweets = TwitterUtils.createStream\(ssc, None\)
 
     // Extract the text
-
+    
     val tweets\_collection = tweets.map\(each\_tweet =&gt; each\_tweet.getText\(\)\)
-
+    
     //Set your search criteria to only retain these meet your search condition
-
+    
     val focus\_tweets\_collection=tweets\_collection.filter\(text=&gt;text.toLowerCase.contains\("new york"\) \| text.toLowerCase.contains\("san francisco"\)\)
 
 //Display your result
 
     focus\_tweets\_collection.print\(\)
-
+    
     ssc.checkpoint\("d:/checkpoint/"\)
-
+    
     ssc.start\(\)
-
+    
     ssc.awaitTermination\(\)
 
   } 
@@ -3112,15 +3112,15 @@ import datetime
 spark = SparkSession \
 
           .builder \
-
+    
           .config\("spark.master", "local"\) \
-
+    
           .appName\("interfacing spark sql to hive metastore with no configuration file"\) \
-
+    
           .config\("hive.metastore.uris", "thrift://10.0.0.46:9083"\) \
-
+    
           .enableHiveSupport\(\) \
-
+    
           .getOrCreate\(\)
 
 sc=spark.sparkContext
@@ -3130,37 +3130,37 @@ sc.setLogLevel\("ERROR"\)
 class MyListener\(StreamListener\):
 
     def \_\_init\_\_\(self, api=None\):
-
+    
         super\(\).\_\_init\_\_\(\)
-
+    
     def on\_status\(self, status\):
-
+    
         text = status.text
-
+    
         created = str\(status.created\_at\)
-
+    
         record = {'Text': text, 'Created At': created}
 
 \#Save to HIVE table tweets       
 
         filtered\_data="".join\(list\(filter\(lambda x: x!="@" and x!="'" and x!='"' \
-
+    
                                           and x!="\n" and x!='{' and x!='}' and x!='\(' and x!='\)',text\)\)\)
-
+    
         print\(filtered\_data\)
-
+    
         spark.sql\("INSERT INTO tweets values \('"+created+"','"+filtered\_data+"'\)"\)
 
 def on\_error\(self, status\):
 
         print \('Something wrong with status', status\)
-
+    
     def on\_limit\(self, status\):
-
+    
         print \('Over the threshold', status\)
-
+    
     def on\_timeout\(self, status\):
-
+    
         print \('Timeout...'\)
 
 stream = Stream\(auth=auth, listener=MyListener\(\)\)
@@ -3181,7 +3181,7 @@ Innoviva INVA Outpaces Stock Market Gains: What You Should Know https://t.co/EIN
 
 Lrihendry ROHLL5 PRESIDENT TRUMP has been in OFFICE for 3 years and these five things are true. Lowest Unemploym… [https://t.co/ht8cAE7Ifp](https://t.co/ht8cAE7Ifp) …
 
-### GRAPHX
+#### GRAPHX
 
 GraphX is a new component in Spark for graphs and graph-parallel computation. At a high level, GraphX extends the Spark RDD by introducing a new Graph abstraction: a directed multigraph with properties attached to each vertex and edge.
 
@@ -3302,11 +3302,11 @@ select \* from edge;
 --------+---------+--------------
 
       1 \|       2 \| boss
-
+    
       1 \|       3 \| boss
-
+    
       2 \|       3 \| coworker
-
+    
       4 \|       1 \| boss
 
 \(4 rows\)
@@ -3330,7 +3330,7 @@ LEFT JOIN vertex AS dst ON e.dest\_id = dst.id\)
 select src\_name \|\| ', ' \|\| src\_title \|\| ', is ‘
 
                 \|\| relationship \|\| ' of ' \|\| dest\_name \|\| ', ‘
-
+    
                 \|\| dest\_title
 
 from x;
@@ -3370,13 +3370,13 @@ Logger.getLogger\("org"\).setLevel\(Level.ERROR\)
 val spark = SparkSession
 
     .builder
-
+    
     .appName\("graphx"\)
-
+    
     .master\("local\[\*\]"\)
-
+    
     .config\("spark.sql.warehouse.dir", "file:///tmp"\)
-
+    
     .getOrCreate\(\)
 
 val sc=spark.sparkContext
@@ -3448,19 +3448,19 @@ Following is record 1
 {
 
     "visitorId": "v1",
-
+    
     "products": \[{
-
+    
          "id": "i1",
-
+    
          "interest": 0.68
-
+    
     }, {
-
+    
          "id": "i2",
-
+    
          "interest": 0.42
-
+    
     }\]
 
 }
@@ -3470,19 +3470,19 @@ Following is record 2:
 {
 
     "visitorId": "v2",
-
+    
     "products": \[{
-
+    
          "id": "i1",
-
+    
          "interest": 0.78
-
+    
     }, {
-
+    
          "id": "i3",
-
+    
          "interest": 0.11
-
+    
     }\] }
 
 Following is dimension definition:
@@ -3498,19 +3498,19 @@ Now define enrichment task: Turn the record 1, based upon dimension defined earl
 {
 
     "visitorId": "v1",
-
+    
     "products": \[{
-
+    
          "id": "i1",
-
+    
          "interest": 0.68
-
+    
     }, {
-
+    
          "id": "i2",
-
+    
          "interest": 0.42
-
+    
     }\]
 
 }
@@ -3520,23 +3520,23 @@ Into
 {
 
     "visitorId": "v1",
-
+    
     "products": \[{
-
+    
          "id": "i1",
-
+    
          “name”: “Nike Shoes”,
-
+    
          "interest": 0.68
-
+    
     }, {
-
+    
          "id": "i2",
-
+    
          “name”: “Unbrella”,
-
+    
          "interest": 0.42
-
+    
     }\]
 
 }
@@ -3546,19 +3546,19 @@ Also, enrich record 2 the same way:
 {
 
     "visitorId": "v2",
-
+    
     "products": \[{
-
+    
          "id": "i1",
-
+    
          "interest": 0.78
-
+    
     }, {
-
+    
          "id": "i3",
-
+    
          "interest": 0.11
-
+    
     }\]
 
 }
@@ -3568,23 +3568,23 @@ Into:
 {
 
     "visitorId": "v2",
-
+    
     "products": \[{
-
+    
          "id": "i1",
-
+    
          “name”:  “Nike Shoes”,
-
+    
          "interest": 0.78
-
+    
     }, {
-
+    
          "id": "i3",
-
+    
          “name”:  “Jeans”,
-
+    
          "interest": 0.11
-
+    
     }\]
 
 }[  
@@ -3624,19 +3624,19 @@ implicit val formats = org.json4s.DefaultFormats
 val rec1: String = """{
 
     "visitorId": "v1",
-
+    
     "products": \[{
-
+    
          "id": "i1",
-
+    
          "interest": 0.68
-
+    
     }, {
-
+    
          "id": "i2",
-
+    
          "interest": 0.42
-
+    
     }\]
 
 }"""
@@ -3644,19 +3644,19 @@ val rec1: String = """{
  val rec2: String = """{
 
     "visitorId": "v2",
-
+    
     "products": \[{
-
+    
          "id": "i1",
-
+    
          "interest": 0.78
-
+    
     }, {
-
+    
          "id": "i3",
-
+    
          "interest": 0.11
-
+    
     }\]
 
 }"""
@@ -3664,13 +3664,13 @@ val rec1: String = """{
 val visitsData: Seq\[String\] = Seq\(rec1, rec2\)
 
       for \(i&lt;-0 until visitsData.size\)
-
+    
       {
-
+    
         println\(visitsData\(i\)\)
-
+    
         println\(" "\)
-
+    
       }
 
 //Define dimension into key value pair map
@@ -3682,15 +3682,15 @@ val productIdToNameMap = Map\("i1" -&gt; "Nike Shoes", "i2" -&gt; "Umbrella", "i
 case class v\_rec\(
 
     id: String,
-
+    
     interest: Double
-
+    
     \)
-
+    
     case class p\_rec\(
-
+    
         visitorId: String, products: Array\[v\_rec\]
-
+    
     \)
 
 //define New case class that will match new enriched Json string, that has added name field, you need that new case class to create a new, enriched Json string that has an added name key value pair
@@ -3698,17 +3698,17 @@ case class v\_rec\(
 case class v\_rec\_new\(
 
         id: String,
-
+    
         name: String,
-
+    
         interest: Double
-
+    
       \)
-
+    
     case class p\_rec\_new\(
-
+    
         visitorId: String, products: Array\[v\_rec\_new\]
-
+    
       \)
 
 var jString: Array\[String\]=Array\[String\]\(\)
@@ -3720,65 +3720,65 @@ var enrichedJson:Array\[String\]=Array\[String\]\(\)
 for \(js&lt;-visitsData\)
 
     {
-
+    
       var jObj=parse\(js\)
-
+    
       var eJ=jObj.extract\[p\_rec\]
-
+    
       var jStringJ=parse\(rec1\)
-
+    
       for \(i&lt;-0 until eJ.products.size\)
-
+    
        {
-
+    
            var prodName:String="Invalid Product"
-
+    
            //if there is no such product, show Invalid Product
-
+    
            if \(productIdToNameMap contains \(eJ.products\(i\).id.toString\)\)               
-
+    
                prodName=productIdToNameMap\(eJ.products\(i\).id.toString\)
-
+    
            var newRec=p\_rec\_new\(visitorId=eJ.visitorId,products=Array\(v\_rec\_new\(eJ.products\(i\).id.toString,
-
+    
            prodName,eJ.products\(i\).interest        
-
+    
            \)
-
+    
            \)
-
+    
            \)  
 
 //Now Json Serilizing it
 
             val newRecStr = write\(newRec\)
-
+    
            jString:+=newRecStr
-
+    
        }
-
+    
       for \(x&lt;-0 until jString.size\)
-
+    
       {  
-
+    
           if \(x==0\)
-
+    
             jStringJ=parse\(jString\(x\)\)
-
+    
           else
-
+    
           {
-
+    
             jStringJ=jStringJ merge parse\(jString\(x\)\)
-
+    
           }
-
+    
       }
 
 // Finally, print the new enriched Json string out
 
       enrichedJson:+=write\(jStringJ\)       
-
+    
       jString=Array\[String\]\(\)
 
   }
@@ -3812,19 +3812,19 @@ import org.apache.spark.sql.functions.\_
 val rec1: String = """{
 
     "visitorId": "v1",
-
+    
     "products": \[{
-
+    
          "id": "i1",
-
+    
          "interest": 0.68
-
+    
     }, {
-
+    
          "id": "i2",
-
+    
          "interest": 0.42
-
+    
     }\]
 
 }"""
@@ -3834,15 +3834,15 @@ val rec1: String = """{
 val rec2: String = """{
 
     "visitorId": "v2",
-
+    
     "products": \[{
-
+    
          "id": "i1",
-
+    
          "interest": 0.78
-
+    
     }, {
-
+    
          "id": "i3",
 
 "interest": 0.11
@@ -3876,11 +3876,11 @@ for \(i&lt;-visitsData\)
    println\("Original Json String is: \n"\)
 
     println\(i\)
-
+    
     println\("\n"\)
-
+    
     var rec=spark.read.json\(Seq\(i\).toDS\)
-
+    
     rec.createOrReplaceTempView\("dfVisitsTable"\)
 
    val productsArr=sql \("SELECT products FROM dfVisitsTable"\).withColumn\("products", explode\($"products"\)\).select\("products.\*"\)
@@ -3900,13 +3900,13 @@ enrichedRecord.createOrReplaceTempView\("enrichedRec"\)
 val enrichedJson=sql\("select visitorId, collect\_list\(struct\(id, name, interest\)\) products from enrichedRec group by visitorId"\).toJSON.collect.mkString\("",",",""\)
 
     println\("Enriched Json String is:\n"\)
-
+    
     println\(enrichedJson\)
-
+    
     println\(" "\)
-
+    
     println\(" "\)
-
+    
     }
 
 Executing prior Spark Scala code produces below output:
@@ -3916,19 +3916,19 @@ Original Json String is:
 {
 
     "visitorId": "v1",
-
+    
     "products": \[{
-
+    
          "id": "i1",
-
+    
          "interest": 0.68
-
+    
     }, {
-
+    
          "id": "i2",
-
+    
          "interest": 0.42
-
+    
     }\]
 
 }
@@ -3942,19 +3942,19 @@ Original Json String is:
 {
 
     "visitorId": "v2",
-
+    
     "products": \[{
-
+    
          "id": "i1",
-
+    
          "interest": 0.78
-
+    
     }, {
-
+    
          "id": "i3",
-
+    
          "interest": 0.11
-
+    
     }\]
 
 }
@@ -5789,7 +5789,7 @@ val dataset = spark.createDataFrame\(
   Seq\(
 
     \(0, 18, 1.0, Vectors.dense\(0.0, 10.0, 0.5\), 1.0\),
-
+    
     \(0, 18, 1.0, Vectors.dense\(0.0, 10.0\), 0.0\)\)
 
 \).toDF\("id", "hour", "mobile", "userFeatures", "clicked"\)
@@ -5943,13 +5943,13 @@ Suppose that we have a DataFrame with the columns a and b:
 ------------\|-----------
 
      1.0    \| Double.NaN
-
+    
      2.0    \| Double.NaN
 
  Double.NaN \|     3.0  
 
      4.0    \|     4.0  
-
+    
      5.0    \|     5.0  
 
 In this example, Imputer will replace all occurrences of Double.NaN \(the default for the missing value\) with the mean \(the default imputation strategy\) computed from the other values in the corresponding columns. In this example, the surrogate values for columns a and b are 3.0 and 4.0 respectively. After transformation, the missing values in the output columns will be replaced by the surrogate value for the relevant column.
@@ -5959,7 +5959,7 @@ In this example, Imputer will replace all occurrences of Double.NaN \(the defaul
 ------------\|------------\|-------\|-------
 
      1.0    \| Double.NaN \|  1.0  \|  4.0
-
+    
      2.0    \| Double.NaN \|  2.0  \|  4.0
 
  Double.NaN \|     3.0    \|  3.0  \|  3.0
@@ -6431,53 +6431,53 @@ Learned classification forest model:
   Tree 0 \(weight 1.0\):
 
     If \(feature 512 &lt;= 1.5\)
-
+    
      If \(feature 454 &lt;= 12.0\)
-
+    
       If \(feature 486 &lt;= 204.5\)
-
+    
        Predict: 0.0
-
+    
       Else \(feature 486 &gt; 204.5\)
-
+    
        Predict: 1.0
-
+    
      Else \(feature 454 &gt; 12.0\)
-
+    
       Predict: 1.0
-
+    
     Else \(feature 512 &gt; 1.5\)
-
+    
      Predict: 1.0
 
   Tree 1 \(weight 1.0\):
 
     If \(feature 462 &lt;= 62.5\)
-
+    
      If \(feature 492 &lt;= 205.5\)
-
+    
       Predict: 1.0
-
+    
      Else \(feature 492 &gt; 205.5\)
-
+    
       Predict: 0.0
-
+    
     Else \(feature 462 &gt; 62.5\)
-
+    
      Predict: 0.0
 
   Tree 2 \(weight 1.0\):
 
     If \(feature 301 &lt;= 27.0\)
-
+    
      If \(feature 429 &lt;= 7.0\)
-
+    
       Predict: 0.0
-
+    
      Else \(feature 429 &gt; 7.0\)
-
+    
       Predict: 1.0
-
+    
     Else \(feature 301 &gt; 27.0\)      Predict: 1.0
 
 Gradient-boosted trees \(GBTs\) are a popular classification and regression method using ensembles of decision trees.
@@ -6613,81 +6613,81 @@ Learned classification GBT model:
   Tree 0 \(weight 1.0\):
 
     If \(feature 434 &lt;= 70.5\)
-
+    
      If \(feature 99 in {2.0}\)
-
+    
       Predict: -1.0
-
+    
      Else \(feature 99 not in {2.0}\)
-
+    
       Predict: 1.0
-
+    
     Else \(feature 434 &gt; 70.5\)
-
+    
      Predict: -1.0
 
 Tree 1 \(weight 0.1\):
 
     If \(feature 434 &lt;= 70.5\)
-
+    
      If \(feature 243 &lt;= 4.0\)
-
+    
       Predict: -0.4768116880884702
-
+    
      Else \(feature 243 &gt; 4.0\)
-
+    
       If \(feature 187 &lt;= 116.0\)
-
+    
        If \(feature 127 &lt;= 10.0\)
-
+    
         Predict: 0.4768116880884702
-
+    
        Else \(feature 127 &gt; 10.0\)
-
+    
         Predict: 0.4768116880884703
-
+    
       Else \(feature 187 &gt; 116.0\)
-
+    
        Predict: 0.4768116880884703
-
+    
     Else \(feature 434 &gt; 70.5\)
-
+    
      If \(feature 351 &lt;= 132.0\)
-
+    
       If \(feature 124 &lt;= 9.5\)
-
+    
        Predict: -0.4768116880884702
-
+    
       Else \(feature 124 &gt; 9.5\)
-
+    
        Predict: -0.47681168808847024
-
+    
      Else \(feature 351 &gt; 132.0\)       Predict: -0.47681168808847035
 
 Tree 2 \(weight 0.1\):
 
     If \(feature 434 &lt;= 70.5\)
-
+    
      If \(feature 549 &lt;= 253.5\)
-
+    
       If \(feature 216 &lt;= 54.5\)
-
+    
        Predict: 0.43819358104272055
-
+    
       Else \(feature 216 &gt; 54.5\)
-
+    
        Predict: 0.43819358104272066
-
+    
      Else \(feature 549 &gt; 253.5\)
-
+    
       Predict: -0.43819358104271977
-
+    
     Else \(feature 434 &gt; 70.5\)
-
+    
      If \(feature 350 &lt;= 7.0\)
-
+    
       Predict: -0.4381935810427206
-
+    
      Else \(feature 350 &gt; 7.0\)       Predict: -0.43819358104272066
 
 A support vector machine constructs a hyperplane or set of hyperplanes in a high- or infinite-dimensional space, which can be used for classification, regression, or other tasks. Intuitively, a good separation is achieved by the hyperplane that has the largest distance to the nearest training-data points of any class \(so-called functional margin\), since in general the larger the margin the lower the generalization error of the classifier.
