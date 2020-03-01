@@ -16,7 +16,7 @@ The codes that I developed for this class are in my github site and you will be 
 
 [https://github.com/geyungjen/jentekllc/tree/master/Spark](https://github.com/geyungjen/jentekllc/tree/master/Spark)
 
-### Spark Environment Setup
+## Spark Environment Setup
 
 #### Development environment:
 
