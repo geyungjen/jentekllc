@@ -1,0 +1,2 @@
+hive-site.xml
+need to copy it to $SPARK_HOME/conf/
