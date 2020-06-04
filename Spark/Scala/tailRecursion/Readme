@@ -1,1 +1,101 @@
+#By George Jen
+#Jen Tek LLC
+#06/03/2020
+
+#Build directory is in recursion.tar.gz and ready to run inside
+#sbt clean
+#sbt compile
+#sbt run
+#sbt test
+
+#sbt clean
+
+(base) bigdata2@bigdata2:~/recursion$ sbt clean
+[info] Loading project definition from /home/bigdata2/recursion/project
+[info] Loading settings for project root from build.sbt ...
+[info] Set current project to scalatest-example (in build file:/home/bigdata2/recursion/)
+[success] Total time: 0 s, completed Jun 3, 2020 11:10:03 PM
+
+#sbt compile
+
+(base) bigdata2@bigdata2:~/recursion$ sbt compile
+[info] Loading project definition from /home/bigdata2/recursion/project
+[info] Loading settings for project root from build.sbt ...
+[info] Set current project to scalatest-example (in build file:/home/bigdata2/recursion/)
+[info] Executing in batch mode. For better performance use sbt's shell
+[info] Compiling 1 Scala source to /home/bigdata2/recursion/target/scala-2.11/classes ...
+[success] Total time: 3 s, completed Jun 3, 2020 11:10:14 PM
+
+#sbt run
+
+
+(base) bigdata2@bigdata2:~/recursion$ sbt run
+[info] Loading project definition from /home/bigdata2/recursion/project
+[info] Loading settings for project root from build.sbt ...
+[info] Set current project to scalatest-example (in build file:/home/bigdata2/recursion/)
+[info] running com.jentekco.scala.tailRecursion
+Do List Reverse
+Original List is: List((1,2), 3, abc, 3.1416)
+Reversed List is: List(3.1416, abc, 3, (1,2))
+
+Do String Run Level Encoding
+Original String: Get Uppppppppppppppppppppppppppppppppppppp!
+RLE Compressed: Get U37p!
+Restored String: Get Uppppppppppppppppppppppppppppppppppppp!
+[success] Total time: 0 s, completed Jun 3, 2020 11:10:24 PM
+
+
+#sbt test
+
+(base) bigdata2@bigdata2:~/recursion$ sbt test
+[info] Loading project definition from /home/bigdata2/recursion/project
+[info] Loading settings for project root from build.sbt ...
+[info] Set current project to scalatest-example (in build file:/home/bigdata2/recursion/)
+[info] Compiling 3 Scala sources to /home/bigdata2/recursion/target/scala-2.11/test-classes ...
+[warn] there were three deprecation warnings; re-run with -deprecation for details
+[warn] one warning found
+[info] tailRecursionRLETest:
+[info] - tailRecursion.runLevelEncode
+[info] tailRecursionRLERestoreTest:
+[info] - tailRecursion.rleRestore
+[info] tailRecursionReverseTest:
+[info] - tailRecursion.reverseList
+[info] Run completed in 234 milliseconds.
+[info] Total number of tests run: 3
+[info] Suites: completed 3, aborted 0
+[info] Tests: succeeded 3, failed 0, canceled 0, ignored 0, pending 0
+[info] All tests passed.
+[success] Total time: 3 s, completed Jun 3, 2020 11:10:38 PM
+
+#run jar file using scala
+
+(base) bigdata2@bigdata2:~/recursion$ ls target/scala*
+classes  scalatest-example_2.11-0.1.0-SNAPSHOT.jar  test-classes  update
+
+
+(base) bigdata2@bigdata2:~/recursion$ scala target/scala*/scalatest-example_2.11-0.1.0-SNAPSHOT.jar
+Do List Reverse
+Original List is: List((1,2), 3, abc, 3.1416)
+Reversed List is: List(3.1416, abc, 3, (1,2))
+
+Do String Run Level Encoding
+Original String: Get Uppppppppppppppppppppppppppppppppppppp!
+RLE Compressed: Get U37p!
+Restored String: Get Uppppppppppppppppppppppppppppppppppppp!
+(base) bigdata2@bigdata2:~/recursion$
+
+#source code files are
+#tailRecursion.scala
+
+#Unit test files used in sbt test are
+#tailRecursionReverseTest.scala  
+#tailRecursionRLERestoreTest.scala  
+#tailRecursionRLETest.scala
+
+#Code was developped with ElipseIDE, see screenshots
+
+
+
+
+
 
